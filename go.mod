@@ -1,5 +1,3 @@
-module test-stub-golang
+module src/main/go/main.go
 
 go 1.14
-
-require github.com/gorilla/mux v1.8.0
