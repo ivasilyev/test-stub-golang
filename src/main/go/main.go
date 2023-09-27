@@ -82,7 +82,7 @@ func endPointHandler(responseWriter http.ResponseWriter, requests *http.Request)
 }
 
 func renderTemplate(responseWriter http.ResponseWriter, templateData TemplateData) {
-	tmpl, err := template.ParseFiles("static/templates/ui.html")
+	tmpl, err := template.ParseFiles("../resources/static/templates/ui.html")
 	if err != nil {
 		http.Error(responseWriter, err.Error(), http.StatusInternalServerError)
 		return
@@ -105,8 +105,8 @@ func main() {
 	http.HandleFunc(fmt.Sprintf("/%s/api/reset-delay", ENDPOINT_NAME), resetDelayHandler)
 
 	// Define the common HTTP routes
-	http.Handle("/css/", http.StripPrefix("/css/", http.FileServer(http.Dir("./static/styles/"))))
-	http.Handle("/js/", http.StripPrefix("/js/", http.FileServer(http.Dir("./static/scripts/"))))
+	http.Handle("/css/", http.StripPrefix("/css/", http.FileServer(http.Dir("../resources/static/styles/"))))
+	http.Handle("/js/", http.StripPrefix("/js/", http.FileServer(http.Dir("../resources/static/scripts/"))))
 
 	// Start the HTTP server
 	log.Println(fmt.Sprintf("Server started on http://localhost:%d", PORT))
