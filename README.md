@@ -3,6 +3,15 @@ Golang Test Stub.
 
 Simple.
 
+## Get the program
+
+```bash
+curl -fsSL "$(
+    curl -s "https://api.github.com/repos/ivasilyev/test-stub-golang/releases/latest" \
+    | grep -E '\"browser_download_url\":.*\linux.*' \
+    | sed -E 's/.*"([^"]+)".*/\1/' 
+)" -o "test-stub-golang"
+```
 
 ## Run the program
 
