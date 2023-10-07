@@ -3,6 +3,8 @@ package controller
 import (
 	"encoding/json"
 	"fmt"
+	"github.com/prometheus/client_golang/prometheus"
+	"github.com/prometheus/client_golang/prometheus/promauto"
 	"net/http"
 	"src/main/go/org/test/golang_stub/main.go/src/main/go/org/test/golang_stub/constants"
 	"src/main/go/org/test/golang_stub/main.go/src/main/go/org/test/golang_stub/dto"
@@ -19,6 +21,12 @@ type TemplateData struct {
 var delayDto = dto.DelayDto{
 	DelayMs: DEFAULT_DELAY_MS,
 }
+
+// Counter to be monitored
+var opsProcessed = promauto.NewCounter(prometheus.CounterOpts{
+	Name: "app_processed_ops_total",
+	Help: "The total number of processed events",
+})
 
 /*
    curl \
@@ -78,7 +86,9 @@ func resetDelayHandler(w http.ResponseWriter, r *http.Request) {
 */
 func endPointHandler(responseWriter http.ResponseWriter, requests *http.Request) {
 	responseWriter.Header().Set("Content-Type", "application/json")
+	// Response code here
 	responseWriter.Write([]byte("{\"success\":true}"))
+	opsProcessed.Inc()
 }
 
 func HandleRestEndpoint() {
