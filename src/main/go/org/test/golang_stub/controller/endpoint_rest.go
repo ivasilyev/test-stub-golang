@@ -24,8 +24,8 @@ var delayDto = dto.DelayDto{
 
 // Counter to be monitored
 var opsProcessed = promauto.NewCounter(prometheus.CounterOpts{
-	Name: "app_processed_ops_total",
-	Help: "The total number of processed events",
+	Name: fmt.Sprintf("app_processed_ops_total_%s", ENDPOINT_NAME),
+	Help: fmt.Sprintf("The total number of processed events for the endpoint %s", ENDPOINT_NAME),
 })
 
 /*
