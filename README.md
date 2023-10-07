@@ -41,3 +41,9 @@ curl \
     --header 'Content-Type: application/json' \
     "http://hostname:10100/endpoint/api/set-delay"
 ```
+
+## Access program monitoring metrics
+
+```bash
+curl "http://hostname:10100/actuator/prometheus"
+```
