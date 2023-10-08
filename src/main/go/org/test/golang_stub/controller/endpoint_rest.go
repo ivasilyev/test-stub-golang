@@ -13,10 +13,6 @@ import (
 const ENDPOINT_NAME = "endpoint"
 const DEFAULT_DELAY_MS = 500
 
-type TemplateData struct {
-	EndpointName string
-}
-
 // Define the default Delay
 var delayDto = dto.DelayDto{
 	DelayMs: DEFAULT_DELAY_MS,
